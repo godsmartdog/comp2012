@@ -8,10 +8,8 @@ using namespace std;
  * 0 if they are equivalent, or > 0 if the first Song is longer than the second.
  */
 int compare_by_length(const Song& one, const Song& two){
-    if(one.length<two.length){
-        return -1;
-    }
-    return (one.length>two.length?1:0);
+    
+    return (one.length-two.length);
 }
 
 /**
@@ -20,26 +18,7 @@ int compare_by_length(const Song& one, const Song& two){
  */
 int compare_by_name(const Song& one, const Song& two){
   
-   int sizel = min(one.name.length(), two.name.length());
-   
-   
-    for(int i=0; i < sizel;i++){
-        if(one.name[i]<two.name.at(i)){
-            return -1;
-        }
-        if(two.name[i]<one.name[i]){
-            return 1;
-        }
-    }
-    if(one.name.length()<two.name.length()){
-        return -1;
-    }
-    else if(one.name.length()>two.name.length()){
-        return 1;
-    }
-    else{
-        return 0;
-    }
+   return(one.name.compare(two.name));
 }
 
 
@@ -49,27 +28,123 @@ int compare_by_name(const Song& one, const Song& two){
  * 0 if they are equivalent, or > 0 if the artist of the first Song is lexicographically after the name of the second.
  */
 int compare_by_artist(const Song& one, const Song& two){
-    int sizel = min(one.artist.length(), two.artist.length());
-   
-   
-    for(int i=0; i < sizel;i++){
-        if(one.artist[i]<two.artist.at(i)){
-            return -1;
-        }
-        if(two.artist[i]<one.artist[i]){
-            return 1;
-        }
-    }
-    if(one.artist.length()<two.artist.length()){
-        return -1;
-    }
-    else if(one.artist.length()>two.artist.length()){
-        return 1;
-    }
-    else{
-        return 0;
-}}
+    return one.artist.compare(two.artist);
+}
 
 BST::BST(int(**compare_funcs)(const Song& ,const Song&),int value):root(nullptr), compare_funcs(compare_funcs),func_length(value){
+
+}
+BST::~BST(){
+if(root!=nullptr){
+    delete root;
+}
+}
+
+BST::BSTNode::BSTNode(const Song&song):song(song),left_count(0),right_count(0),left(nullptr),right(nullptr){}
+    
+BST::BSTNode::~BSTNode(){
+    delete left;
+    delete right;
+}
+void BST::insert(const Song& song1){
+    
+    if(root==nullptr){
+        root=new BSTNode(song1);
+    }
+    
+    for(int i=0;i<func_length;i++){
+        int tmp=compare_funcs[i](song1,root->song);
+        if(tmp==0){
+            continue;
+        }
+        if(tmp>0){
+            if(root->left==nullptr){
+                root->left=new BST(compare_funcs,func_length);
+            }
+            root->left->insert(song1);
+        }
+        if(tmp<0){
+            if (root->right == nullptr) {
+                root->right = new BST(compare_funcs, func_length);
+            }
+           root->right->insert(song1);
+        }
+    }
+    
+
+}
+
+bool BST::contains(const Song& song1) const{
+    if(root==nullptr){
+        return false;
+    }
+    int compare=-1;
+       for(int i=0;i<func_length;i++){
+        int tmp=compare_funcs[i](song1,root->song);
+        if(tmp==0){
+            continue;
+        }
+        if(tmp>0){
+            compare=2;
+            break;
+        }
+        if(tmp<0){
+            compare=1;
+            break;
+        }
+    }
+    if(compare==-1){
+        return true;
+    }
+    if(compare==1){
+        if(root->right!=nullptr)
+        return root->right->contains(song1);
+        return false;
+    }
+    if(root->left!=nullptr)
+    return root->left->contains(song1);
+    return false;
+}
+
+void BST::print_in_order() const{
+    if(root==nullptr)
+    return;
+    if(root->left!=nullptr)
+    root->left->print_in_order();
+    root->song.to_string();
+    if(root->right!=nullptr)
+    root->right->print_in_order();
+
+}
+
+void BST:: print_nth(int n) const{
+    if (root == nullptr || n < 1 || n > (root->left_count + root->right_count + 1)) {
+        cout << "Song unavailable.\n";
+        return;
+    }
+  
+    const BSTNode* tmp = root;
+    while(tmp!=nullptr){
+        if(n<=tmp->left_count){
+            tmp=tmp->left->root;
+            
+        }
+        else if(n==tmp->left_count+1){
+            tmp->song.to_string();
+            return;
+        }
+        else{
+            n=n-tmp->left_count-1;
+            tmp=tmp->right->root;
+        }
+    }
+}
+BST::BST(const BST& x): root(nullptr), compare_funcs(x.compare_funcs), func_length(x.func_length){
+    if (x.root==nullptr)
+        return;
+
+    root = new BSTNode(*x.root);
+}
+BST::BSTNode::BSTNode(const BSTNode& x):song(x.song),left_count(x.left_count),right_count(x.right_count),left(x.left),right(x.right){
 
 }
