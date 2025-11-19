@@ -145,6 +145,15 @@ BST::BST(const BST& x): root(nullptr), compare_funcs(x.compare_funcs), func_leng
 
     root = new BSTNode(*x.root);
 }
-BST::BSTNode::BSTNode(const BSTNode& x):song(x.song),left_count(x.left_count),right_count(x.right_count),left(x.left),right(x.right){
+BST::BSTNode::BSTNode(const BSTNode& x):song(x.song),left_count(x.left_count),right_count(x.right_count),left(nullptr),right(nullptr){
+    
 
+    if (x.left != nullptr) {
+        left = new BST(*(x.left));  // Create new BST object
+    }
+    
+    // Deep copy right subtree
+    if (x.right != nullptr) {
+        right = new BST(*(x.right));  // Create new BST object
+    }
 }
