@@ -111,7 +111,7 @@ void BST::print_in_order() const{
     return;
     if(root->left!=nullptr)
     root->left->print_in_order();
-    root->song.to_string();
+    cout<<root->song.to_string();
     if(root->right!=nullptr)
     root->right->print_in_order();
 
@@ -130,7 +130,7 @@ void BST:: print_nth(int n) const{
             
         }
         else if(n==tmp->left_count+1){
-            tmp->song.to_string();
+            cout<<tmp->song.to_string();
             return;
         }
         else{
