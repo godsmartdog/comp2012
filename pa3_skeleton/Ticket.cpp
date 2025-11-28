@@ -12,3 +12,23 @@ string Ticket::toString() const {
 Ticket:: Ticket(Flight* flight, int seatNum, const Datetime& time, int price):info(flight,seatNum,time),price(price){
 
 }
+
+bool Ticket:: operator< (const FlightInfo& key) const{
+  if(info.departureTime==key.departureTime){
+    if(*(info.flight)==*(key.flight)){
+      return info.seatNumber<key.seatNumber;
+    }
+    return *(info.flight)==*(key.flight);
+  }
+  return info.departureTime<key.departureTime;
+}
+bool Ticket:: operator== (const FlightInfo& key) const{
+  if(info.departureTime==key.departureTime){
+    if(*(info.flight)==*(key.flight)){
+      return info.seatNumber==key.seatNumber;
+
+    }
+    
+  }
+  return false;
+}
