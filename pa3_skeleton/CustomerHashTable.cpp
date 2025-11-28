@@ -45,7 +45,8 @@ void CustomerHashTable:: clear(){
 CustomerList* CustomerHashTable:: toList() const{
     CustomerList *result= new CustomerList;
     for (int i =0;i<size;i++){
-        result->add(table[i]);
+        result->add(&table[i]);
     }
+    return result;
     
 }
