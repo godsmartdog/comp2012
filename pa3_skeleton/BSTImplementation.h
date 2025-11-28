@@ -47,7 +47,7 @@ void BST<T>::add(T* data) {
     BST<T>* current = this;
     while (true) {
         if (*data < *(current->root->data)) {
-            // Go left
+            
             if (current->root->left.root == nullptr) {
                 current->root->left.root = new BSTNode(data);
                 return;
@@ -61,9 +61,20 @@ void BST<T>::add(T* data) {
             }
             current = &(current->root->right);
         } else {
-            // Duplicate found (shouldn't happen per assumptions)
+           
             return;
         }
     }
 }
+template<typename T>
+void BST:: print() const{
+    if(root==nullptr){
+        return;
+    }
+    root->left.print();
+    cout<< root->data->toString()<<endl;
+    root->right.print();
+}
+
+
 #endif // __BST_IMPLEMENTATION_H__
