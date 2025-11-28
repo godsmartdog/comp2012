@@ -14,3 +14,23 @@ Customer::Customer(const string& name) : name{name}, totalSpending{0}, transacti
 Customer::Customer(const Customer& other) : name{other.name}, totalSpending{other.totalSpending}, transactions{nullptr} {
   cout << "Copy customer data from " << name << "." << endl;
 }
+
+Member::void updateMembershipStatus(){
+  if(totalSpending>MEMBER_REQUIREMENT[2]-1){
+    memberStatus=3;
+    cout<< name<<" becomes "<< MEMBER_STATUS_LIST[memberStatus]<<" member !"<<endl;
+    return;
+  }
+  if(totalSpending>MEMBER_REQUIREMENT[1]-1){
+    memberStatus=2;
+    cout<< name<<" becomes "<< MEMBER_STATUS_LIST[memberStatus]<<" member !"<<endl;
+    return;
+  }
+  if(totalSpending>MEMBER_REQUIREMENT[0]-1){
+    memberStatus=1;
+    cout<< name<<" becomes "<< MEMBER_STATUS_LIST[memberStatus]<<" member !"<<endl;
+    return;
+  }
+  memberStatus=0;
+}
+
