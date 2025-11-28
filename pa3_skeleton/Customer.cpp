@@ -36,3 +36,12 @@ Member::void updateMembershipStatus(){
   memberStatus=0;
 }
 
+Member::Member(const string& name):Customer(name),memberStatus(0){
+ cout<< "Hello new member "<<name<<"!"<<endl;
+}
+Member::Member(const Customer& customer):Customer(customer){
+  updateMembershipStatus();
+
+}
+
+
