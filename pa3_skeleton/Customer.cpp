@@ -23,10 +23,11 @@ Customer:: ~Customer(){
             if (tmp != nullptr) {
                 Transaction* transaction = tmp->getData();
                 if (transaction != nullptr) {
-                    transactions->remove(transaction);
-                    Ticket* ticket = trans->getTicket();
+                    
+                    Ticket* ticket = transaction->getTicket();
                     
                     delete ticket;
+                    transactions->remove(transaction);
                     delete transaction;
                 }
             }
@@ -90,3 +91,75 @@ double Member ::getDiscountedPercentage() const override{
     case 3: return 0.85
 }
 
+
+void Customer::buyTicket(Ticket* ticket, const Datetime& time) {
+    if (ticket == nullptr) {
+        return;
+    }
+    
+   
+    Transaction* transaction = Transaction::makeTransaction(this, ticket, time);
+    if (transaction != nullptr) {
+        
+        transactions->add(transaction);
+
+        int price = transaction->getPrice();
+        totalSpending += price;
+        
+        cout << name << " spent " << price << "." << endl;
+    }
+}
+
+Ticket* Customer::cancelTransaction(int index) {
+    if (transactions == nullptr || index < 0 || index >= transactions->getSize()) {
+        return nullptr;
+    }
+    
+ 
+    const BST<Transaction>* transTree = transactions->getKth(index);
+    if (transTree == nullptr) {
+        return nullptr;
+    }
+    
+    Transaction* transaction = transTree->getData();
+    if (transaction == nullptr) {
+        return nullptr;
+    }
+    
+
+    transactions->remove(transaction);
+   
+    int price = transaction->getPrice();
+    totalSpending -= price;
+
+    Ticket* ticket = transaction->getTicket();
+    
+    delete transaction;
+    
+    return ticket;
+}
+    // * Task 4.3: transaction BST
+
+void Customer::printTransactions() const{
+  if(transactions!=nullptr){
+    transactions->print();
+  }
+}
+
+void Customer::removeDeadTransactions(const string& flightNo) {
+    if (transactions == nullptr) return;
+    
+    
+    for (int i = transactions->getSize() - 1; i >= 0; i--) {
+        const BST<Transaction>* transTree = transactions->getKth(i);
+        if (transTree != nullptr) {
+            Transaction* trans = transTree->getData();
+            if (trans != nullptr && trans->belongsTo(flightNo)) {
+                transactions->remove(trans);
+                Ticket* ticket = trans->getTicket();
+                delete trans;
+                delete ticket;
+            }
+        }
+    }
+}

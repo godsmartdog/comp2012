@@ -29,3 +29,32 @@ Flight:: ~Flight(){
         tickets = nullptr;
     }
 }
+
+void Flight:: addTicket(Ticket* ticket){
+   if (ticket != nullptr)
+   tickets->add(ticket);
+}
+Ticket* Flight:: sellTicket(int index){
+    if (tickets == nullptr || index < 0 || index >= tickets->getSize()) {
+        return nullptr;
+    }
+    
+    
+    const BST<Ticket>* tmp = tickets->getKth(index);
+    if (tmp == nullptr) {
+        return nullptr;
+    }
+    
+    Ticket* ticket = tmp->getData();
+    if (ticket != nullptr) {
+       
+        tickets->remove(ticket);
+    }
+    
+    return ticket;
+}
+void Flight::showRemainingTickets() const {
+    if (tickets != nullptr) {
+        tickets->print();
+    }
+}
