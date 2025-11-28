@@ -1,0 +1,55 @@
+Create customer John Wick No 0.
+Create customer John Wick No 1.
+Hello new member John Wick No 1!
+Create customer John Wick No 2.
+Create customer John Wick No 3.
+Hello new member John Wick No 3!
+Create customer John Wick No 4.
+CX796 from city0 to city1 has been created.
+CX793 from city1 to city2 has been created.
+CX795 from city2 to city3 has been created.
+CX797 from city3 to city4 has been created.
+CX798 from city4 to city5 has been created.
+CX794 from city5 to city6 has been created.
+[Transaction 0]: CX796 from city0 to city1, seat No.: 74, departure time: 2025-10-14 11:15, price: 4000 by John Wick No 0
+John Wick No 0 spent 4000.
+[Transaction 1]: CX793 from city1 to city2, seat No.: 70, departure time: 2025-10-15 11:15, price: 4100 by John Wick No 1
+John Wick No 1 spent 3895.
+John Wick No 1 becomes BRONZE member!
+[Transaction 2]: CX795 from city2 to city3, seat No.: 73, departure time: 2025-10-16 11:15, price: 4200 by John Wick No 2
+John Wick No 2 spent 4200.
+[Transaction 3]: CX797 from city3 to city4, seat No.: 71, departure time: 2025-10-17 11:15, price: 4300 by John Wick No 3
+John Wick No 3 spent 4085.
+John Wick No 3 becomes BRONZE member!
+[Transaction 4]: CX798 from city4 to city5, seat No.: 72, departure time: 2025-10-19 11:15, price: 4400 by John Wick No 4
+John Wick No 4 spent 4400.
+Transaction 0[2024-10-15 11:15]: CX796 from city0 to city1, seat No.: 74, departure time: 2025-10-14 11:15, price: 4000
+Transaction 1[2024-10-15 11:15]: CX793 from city1 to city2, seat No.: 70, departure time: 2025-10-15 11:15, price: 4100
+Transaction 2[2024-10-15 11:15]: CX795 from city2 to city3, seat No.: 73, departure time: 2025-10-16 11:15, price: 4200
+Transaction 3[2024-10-15 11:15]: CX797 from city3 to city4, seat No.: 71, departure time: 2025-10-17 11:15, price: 4300
+Transaction 4[2024-10-15 11:15]: CX798 from city4 to city5, seat No.: 72, departure time: 2025-10-19 11:15, price: 4400
+CX796 from city0 to city1, seat No.: 70, departure time: 2025-10-15 11:15, price: 4000
+CX796 from city0 to city1, seat No.: 73, departure time: 2025-10-16 11:15, price: 4000
+CX796 from city0 to city1, seat No.: 71, departure time: 2025-10-17 11:15, price: 4000
+CX796 from city0 to city1, seat No.: 72, departure time: 2025-10-19 11:15, price: 4000
+CX793 from city1 to city2, seat No.: 74, departure time: 2025-10-14 11:15, price: 4100
+CX793 from city1 to city2, seat No.: 73, departure time: 2025-10-16 11:15, price: 4100
+CX793 from city1 to city2, seat No.: 71, departure time: 2025-10-17 11:15, price: 4100
+CX793 from city1 to city2, seat No.: 72, departure time: 2025-10-19 11:15, price: 4100
+CX795 from city2 to city3, seat No.: 74, departure time: 2025-10-14 11:15, price: 4200
+CX795 from city2 to city3, seat No.: 70, departure time: 2025-10-15 11:15, price: 4200
+CX795 from city2 to city3, seat No.: 71, departure time: 2025-10-17 11:15, price: 4200
+CX795 from city2 to city3, seat No.: 72, departure time: 2025-10-19 11:15, price: 4200
+CX797 from city3 to city4, seat No.: 74, departure time: 2025-10-14 11:15, price: 4300
+CX797 from city3 to city4, seat No.: 70, departure time: 2025-10-15 11:15, price: 4300
+CX797 from city3 to city4, seat No.: 73, departure time: 2025-10-16 11:15, price: 4300
+CX797 from city3 to city4, seat No.: 72, departure time: 2025-10-19 11:15, price: 4300
+CX798 from city4 to city5, seat No.: 74, departure time: 2025-10-14 11:15, price: 4400
+CX798 from city4 to city5, seat No.: 70, departure time: 2025-10-15 11:15, price: 4400
+CX798 from city4 to city5, seat No.: 73, departure time: 2025-10-16 11:15, price: 4400
+CX798 from city4 to city5, seat No.: 71, departure time: 2025-10-17 11:15, price: 4400
+CX794 from city5 to city6, seat No.: 74, departure time: 2025-10-14 11:15, price: 4500
+CX794 from city5 to city6, seat No.: 70, departure time: 2025-10-15 11:15, price: 4500
+CX794 from city5 to city6, seat No.: 73, departure time: 2025-10-16 11:15, price: 4500
+CX794 from city5 to city6, seat No.: 71, departure time: 2025-10-17 11:15, price: 4500
+CX794 from city5 to city6, seat No.: 72, departure time: 2025-10-19 11:15, price: 4500

@@ -1,0 +1,29 @@
+CX739 from Hong Kong to Singapore has been created.
+Create customer John Wick.
+Hello new member John Wick!
+[Transaction 0]: CX739 from Hong Kong to Singapore, seat No.: 10, departure time: 2025-10-31 11:15, price: 3000 by John Wick
+John Wick spent 2850.
+John Wick becomes BRONZE member!
+[Transaction 1]: CX739 from Hong Kong to Singapore, seat No.: 9, departure time: 2025-10-28 11:15, price: 3000 by John Wick
+John Wick spent 2850.
+John Wick becomes BRONZE member!
+[Transaction 2]: CX739 from Hong Kong to Singapore, seat No.: 8, departure time: 2025-10-16 11:15, price: 3000 by John Wick
+John Wick spent 2850.
+John Wick becomes BRONZE member!
+[Transaction 3]: CX739 from Hong Kong to Singapore, seat No.: 7, departure time: 2025-10-14 11:15, price: 3000 by John Wick
+John Wick spent 2850.
+John Wick becomes SILVER member!
+[Transaction 4]: CX739 from Hong Kong to Singapore, seat No.: 6, departure time: 2025-10-10 11:15, price: 3000 by John Wick
+John Wick spent 2700.
+John Wick becomes SILVER member!
+Transaction 4[2025-10-03 09:00]: CX739 from Hong Kong to Singapore, seat No.: 6, departure time: 2025-10-10 11:15, price: 3000
+Transaction 3[2025-10-03 09:00]: CX739 from Hong Kong to Singapore, seat No.: 7, departure time: 2025-10-14 11:15, price: 3000
+Transaction 2[2025-10-03 09:00]: CX739 from Hong Kong to Singapore, seat No.: 8, departure time: 2025-10-16 11:15, price: 3000
+Transaction 1[2025-10-03 09:00]: CX739 from Hong Kong to Singapore, seat No.: 9, departure time: 2025-10-28 11:15, price: 3000
+Transaction 0[2025-10-03 09:00]: CX739 from Hong Kong to Singapore, seat No.: 10, departure time: 2025-10-31 11:15, price: 3000
+John Wick becomes SILVER member!
+CX739 from Hong Kong to Singapore, seat No.: 2, departure time: 2025-10-01 11:15, price: 3000
+CX739 from Hong Kong to Singapore, seat No.: 4, departure time: 2025-10-12 11:15, price: 3000
+CX739 from Hong Kong to Singapore, seat No.: 1, departure time: 2025-10-15 11:15, price: 3000
+CX739 from Hong Kong to Singapore, seat No.: 5, departure time: 2025-10-20 11:15, price: 3000
+CX739 from Hong Kong to Singapore, seat No.: 3, departure time: 2025-10-30 11:15, price: 3000
