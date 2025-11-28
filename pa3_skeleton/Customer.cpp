@@ -6,14 +6,36 @@
 using namespace std;
 
 // * Task 4.1: constructor & destructor for data structures
-Customer::Customer(const string& name) : name{name}, totalSpending{0}, transactions{nullptr} {
+Customer::Customer(const string& name) : name{name}, totalSpending{0}, transactions{new BST<Transaction> } {
   cout << "Create customer " << name << "." << endl;
 }
 
 // * Task 4.1: constructor & destructor for data structures
-Customer::Customer(const Customer& other) : name{other.name}, totalSpending{other.totalSpending}, transactions{nullptr} {
+Customer::Customer(const Customer& other) : name{other.name}, totalSpending{other.totalSpending}, transactions{new BST<Transaction>(*(other.transactions))} {
   cout << "Copy customer data from " << name << "." << endl;
 }
+
+Customer:: ~Customer(){
+    if (transactions != nullptr) {
+        
+        while (transactions->getSize() > 0) {
+            const BST<Transaction>*tmp = tickets->getKth(0);
+            if (tmp != nullptr) {
+                Transaction* transaction = tmp->getData();
+                if (transaction != nullptr) {
+                    transactions->remove(transaction);
+                    Ticket* ticket = trans->getTicket();
+                    
+                    delete ticket;
+                    delete transaction;
+                }
+            }
+        }
+        delete transactions;
+        transactions = nullptr;
+    }
+}
+
 
 Member::void updateMembershipStatus(){
   int totalSpending = getTotalSpending();  
