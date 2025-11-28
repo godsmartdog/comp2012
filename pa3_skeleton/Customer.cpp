@@ -16,6 +16,8 @@ Customer::Customer(const Customer& other) : name{other.name}, totalSpending{othe
 }
 
 Member::void updateMembershipStatus(){
+  int totalSpending = getTotalSpending();  
+  
   if(totalSpending>MEMBER_REQUIREMENT[2]-1){
     memberStatus=3;
     cout<< name<<" becomes "<< MEMBER_STATUS_LIST[memberStatus]<<" member !"<<endl;
@@ -28,7 +30,7 @@ Member::void updateMembershipStatus(){
   }
   if(totalSpending>MEMBER_REQUIREMENT[0]-1){
     memberStatus=1;
-    cout<< name<<" becomes "<< MEMBER_STATUS_LIST[memberStatus]<<" member !"<<endl;
+    cout<< getName()<<" becomes "<< MEMBER_STATUS_LIST[memberStatus]<<" member !"<<endl;
     return;
   }
   memberStatus=0;
