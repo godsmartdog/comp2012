@@ -72,3 +72,22 @@ void CustomerList:: clear(){
     tail = nullptr;
     size = 0;
 }
+
+Customer* CustomerList:: find(const string& name) const{
+    CustomerNode* current = head;
+    while (current != nullptr) {
+        if(current->data->getName()==name) {
+            return current->data;
+        } 
+        current = current->next;
+    }
+    return nullptr;
+}
+
+void CustomerList:: printNames() const{
+    CustomerNode* current = head;
+    while (current != nullptr) {
+        cout<< current->data->getName()<<endl;
+        current = current->next;
+    }
+}
