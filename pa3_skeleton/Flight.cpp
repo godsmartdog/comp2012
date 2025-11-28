@@ -22,6 +22,7 @@ Flight:: ~Flight(){
                 if (ticket != nullptr) {
                     tickets->remove(ticket);
                     delete ticket;
+                    delete tmp;
                 }
             }
         }

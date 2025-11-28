@@ -110,13 +110,13 @@ void AirlineSystem::createTicket(const string& flight, int seatNum, const Dateti
         return;
     }
     
-    Flight* flight = flightTree->getData();
-    if (flight == nullptr) {
+    Flight* flight1 = flightTree->getData();
+    if (flight1 == nullptr) {
         return;
     }
     
-    Ticket* newTicket = new Ticket(flight, seatNum, time, price);
-    flight->addTicket(newTicket);
+    Ticket* newTicket = new Ticket(flight1, seatNum, time, price);
+    flight1->addTicket(newTicket);
 }
 
 void AirlineSystem::makeTransaction(const string& name, const string& flight, int index, const Datetime& time) {
@@ -134,12 +134,12 @@ void AirlineSystem::makeTransaction(const string& name, const string& flight, in
         return;
     }
     
-    Flight* flight = flightTree->getData();
-    if (flight == nullptr) {
+    Flight* flight1 = flightTree->getData();
+    if (flight1 == nullptr) {
         return;
     }
     
-    Ticket* ticket = flight->sellTicket(index);
+    Ticket* ticket = flight1->sellTicket(index);
     if (ticket == nullptr) {
         cout << "No ticket." << endl;
         return;
@@ -163,12 +163,14 @@ void AirlineSystem::cancelTransaction(const string& name, int index) {
     }
     
     
-    const Flight* flight = ticket->getFlightInfo().flight;
-    if (flight != nullptr) {
-        
+    string flightNo = ticket->getFlightInfo().flight->getFlightNumber();
+    const BST<Flight>* flightTree = flights->find(flightNo);
+    if (flightTree != nullptr) {
+        Flight* flight = flightTree->getData();
         flight->addTicket(ticket);
     }
-}
+        }
+
 
 void AirlineSystem::printTransactions(const string& name) const {
     Customer* customer = customerTable->get(name);
@@ -187,8 +189,8 @@ void AirlineSystem::printRemainingTickets(const string& flight) const {
         return;
     }
     
-    Flight* flight = flightTree->getData();
-    if (flight != nullptr) {
-        flight->showRemainingTickets();
+    Flight* flight1 = flightTree->getData();
+    if (flight1 != nullptr) {
+        flight1->showRemainingTickets();
     }
 }

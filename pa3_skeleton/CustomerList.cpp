@@ -1,9 +1,9 @@
 #include "CustomerList.h"
 
 CustomerList:: CustomerList(const CustomerList& other):head(nullptr),tail(nullptr),size(other.size){
-    CustomerNode *cur = other->head;
+    CustomerNode *cur = other.head;
     while(cur != nullptr){
-        add(other->data);
+        add(cur->data);
         cur=cur->next;
     }
 }

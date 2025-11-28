@@ -3,22 +3,12 @@
 
 #include "BST.h"
 
-BST::BST(const BST& bst):root(nullptr){
-        if (bst.root != nullptr) {
-        root = new BSTNode(bst.root->data);  // Shallow copy data
-        
-        // Manually copy left subtree
-        if (bst.root->left.root != nullptr) {
-            root->left = BST<T>(bst.root->left);  // Recursive copy
-        }
-        
-        // Manually copy right subtree  
-        if (bst.root->right.root != nullptr) {
-            root->right = BST<T>(bst.root->right);  // Recursive copy
-        }
+template<typename T>
+BST<T>::BST(const BST& bst):root(nullptr){
+        root=new BSTNode(*bst.root);
     }
-}
 
+template<typename T>
 BST<T>::~BST() {
     clear();
 }
@@ -39,7 +29,7 @@ void BST<T>::add(T* data) {
     }
     
     if (root == nullptr) {
-        // Tree is empty, create new root node
+      
         root = new BSTNode(data);
         return;
     }
@@ -67,7 +57,7 @@ void BST<T>::add(T* data) {
     }
 }
 template<typename T>
-void BST:: print() const{
+void BST<T>:: print() const{
     if(root==nullptr){
         return;
     }
@@ -89,12 +79,12 @@ const BST<T>* BST<T>::find(const KeyType& key) const {
         return nullptr;
     }
     
-    if (key == *(root->data)) {
+    if (*(root->data) == key) {
         return this;
-    } else if (key < *(root->data)) {
-        return root->left.find(key);
-    } else {
+    } else if (*(root->data) < key) {
         return root->right.find(key);
+    } else {
+        return root->left.find(key);
     }
 }
 template <typename T>

@@ -19,7 +19,7 @@ Customer:: ~Customer(){
     if (transactions != nullptr) {
         
         while (transactions->getSize() > 0) {
-            const BST<Transaction>*tmp = tickets->getKth(0);
+            const BST<Transaction>*tmp = transactions->getKth(0);
             if (tmp != nullptr) {
                 Transaction* transaction = tmp->getData();
                 if (transaction != nullptr) {
@@ -38,28 +38,28 @@ Customer:: ~Customer(){
 }
 
 
-Member::void updateMembershipStatus(){
+void Member:: updateMembershipStatus(){
   int totalSpending = getTotalSpending();  
   
   if(totalSpending>MEMBER_REQUIREMENT[2]-1){
-    memberStatus=3;
-    cout<< name<<" becomes "<< MEMBER_STATUS_LIST[memberStatus]<<" member !"<<endl;
+    memberStatus = static_cast<MembershipStatus>(3);
+    cout<< getName()<<" becomes "<< MEMBER_STATUS_LIST[3]<<" member !"<<endl;
     return;
   }
   if(totalSpending>MEMBER_REQUIREMENT[1]-1){
-    memberStatus=2;
-    cout<< name<<" becomes "<< MEMBER_STATUS_LIST[memberStatus]<<" member !"<<endl;
+    memberStatus = static_cast<MembershipStatus>(2);
+    cout<< getName()<<" becomes "<< MEMBER_STATUS_LIST[2]<<" member !"<<endl;
     return;
   }
   if(totalSpending>MEMBER_REQUIREMENT[0]-1){
-    memberStatus=1;
-    cout<< getName()<<" becomes "<< MEMBER_STATUS_LIST[memberStatus]<<" member !"<<endl;
+    memberStatus = static_cast<MembershipStatus>(1);
+    cout<< getName()<<" becomes "<< MEMBER_STATUS_LIST[1]<<" member !"<<endl;
     return;
   }
-  memberStatus=0;
+  memberStatus = static_cast<MembershipStatus>(0);
 }
 
-Member::Member(const string& name):Customer(name),memberStatus(0){
+Member::Member(const string& name):Customer(name),memberStatus(static_cast<MembershipStatus>(0)){
  cout<< "Hello new member "<<name<<"!"<<endl;
 }
 Member::Member(const Customer& customer):Customer(customer){
@@ -67,28 +67,28 @@ Member::Member(const Customer& customer):Customer(customer){
 
 }
 
-virtual double Customer:: getDiscountedPercentage() const{
+double Customer:: getDiscountedPercentage() const{
   return 1;
 }
 
-void Member:: buyTicket(Ticket* ticket, const Datetime& time) override{
+void Member:: buyTicket(Ticket* ticket, const Datetime& time){
  Customer::buyTicket(ticket,time);
  updateMembershipStatus();
 }
 // * Task 1.5: virtual functions and overriding
-Ticket* Member ::cancelTransaction(int index) override{
+Ticket* Member ::cancelTransaction(int index) {
   Ticket* ticket=Customer:: cancelTransaction(index);
   updateMembershipStatus();
   return ticket;
 }
 // * Task 1.5: virtual functions and overriding
-double Member ::getDiscountedPercentage() const override{
-  switch(memberStatus):
-    case 0:
+double Member ::getDiscountedPercentage() const{
+  switch(memberStatus){
+    case  static_cast<MembershipStatus>(0):
     return 0.95;
-    case 1: return 0.9;
-    case 2: return 0.88;
-    case 3: return 0.85
+    case  static_cast<MembershipStatus>(1): return 0.9;
+    case  static_cast<MembershipStatus>(2): return 0.88;
+    case  static_cast<MembershipStatus>(3): return 0.85;}
 }
 
 
