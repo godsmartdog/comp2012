@@ -13,4 +13,4 @@ bool Datetime::operator< (const Datetime& other) const {
 
 bool Datetime::operator== (const Datetime& other) const {
   return str == other.str;
-}
+}  
