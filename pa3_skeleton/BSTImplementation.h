@@ -75,6 +75,97 @@ void BST:: print() const{
     cout<< root->data->toString()<<endl;
     root->right.print();
 }
+template <typename T>
+T* BST<T>::getData() const {
+    if (root == nullptr) {
+        return nullptr;
+    }
+    return root->data;
+}
 
+template <typename T>
+const BST<T>* BST<T>::find(const KeyType& key) const {
+    if (root == nullptr) {
+        return nullptr;
+    }
+    
+    if (key == *(root->data)) {
+        return this;
+    } else if (key < *(root->data)) {
+        return root->left.find(key);
+    } else {
+        return root->right.find(key);
+    }
+}
+template <typename T>
+int BST<T>::getSize() const {
+    if (root == nullptr) {
+        return 0;
+    }
+    return 1 + root->left.getSize() + root->right.getSize();
+}
+
+template <typename T>
+const BST<T>* BST<T>::getKth(int k) const {
+    if (root == nullptr || k < 0 || k >= getSize()) {
+        return nullptr;
+    }
+    
+    int leftSize = root->left.getSize();
+    
+    if (k < leftSize) {
+        return root->left.getKth(k);
+    } else if (k == leftSize) {
+        return this;
+    } else {
+        return root->right.getKth(k - leftSize - 1);
+    }
+}
+
+template <typename T>
+void BST<T>::remove(T* data) {
+    if (data == nullptr || root == nullptr) {
+        return;
+    }
+    
+    if (*data < *(root->data)) {
+        root->left.remove(data);
+    } else if (*(root->data) < *data) {
+        root->right.remove(data);
+    } else {
+        
+        if (root->left.root == nullptr && root->right.root == nullptr) {
+            
+            delete root;
+            root = nullptr;
+        } else if (root->left.root == nullptr) {
+           
+            BSTNode* temp = root;
+            root = root->right.root;
+            temp->right.root = nullptr;
+            delete temp;
+        } else if (root->right.root == nullptr) {
+          
+            BSTNode* temp = root;
+            root = root->left.root;
+            temp->left.root = nullptr; 
+            delete temp;
+        } else {
+           
+            BST<T>* maxLeft = &(root->left);
+            while (maxLeft->root->right.root != nullptr) {
+                maxLeft = &(maxLeft->root->right);
+            }
+            
+           
+            T* tempData = root->data;
+            root->data = maxLeft->root->data;
+            maxLeft->root->data = tempData;
+            
+           
+            root->left.remove(maxLeft->root->data);
+        }
+    }
+}
 
 #endif // __BST_IMPLEMENTATION_H__
