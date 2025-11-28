@@ -32,3 +32,43 @@ void CustomerList::add(const CustomerList* customers) {
         current = current->next;
     }
 }
+
+void CustomerList::remove(Customer* customer){
+    if(customer==nullptr)
+    return;
+    CustomerNode* current = head;
+    while (current != nullptr) {
+        if(current->data==customer) {
+            break;
+        } 
+        current = current->next;
+    }
+    if (current->prev != nullptr) {
+                current->prev->next = current->next;
+            } else {
+                
+                head = current->next;
+            }
+            
+            if (current->next != nullptr) {
+                current->next->prev = current->prev;
+            } else {
+                
+                tail = current->prev;
+            }
+
+
+    delete current;
+    size--;
+}
+void CustomerList:: clear(){
+    CustomerNode* current = head;
+    while (current != nullptr) {
+        CustomerNode *tmp=current->next;
+        delete current;
+        current =tmp;
+    }
+    head = nullptr;
+    tail = nullptr;
+    size = 0;
+}
