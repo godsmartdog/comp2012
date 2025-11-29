@@ -1,6 +1,6 @@
 #include "CustomerList.h"
 
-CustomerList:: CustomerList(const CustomerList& other):head(nullptr),tail(nullptr),size(other.size){
+CustomerList:: CustomerList(const CustomerList& other):head(nullptr),tail(nullptr),size(0){
     CustomerNode *cur = other.head;
     while(cur != nullptr){
         add(cur->data);
@@ -21,6 +21,7 @@ void CustomerList::add(Customer* customer) {
         tail = newNode;
     }
     size++;
+    
 }
 
 void CustomerList::add(const CustomerList* customers) {

@@ -5,7 +5,14 @@
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
-      "args": [],
+      "args": [
+            "/Zi", // Generates complete debugging information
+            "/MDd", // Use /MDd or /MTd to define _DEBUG and allow _CrtDumpMemoryLeaks()
+            "/EHsc", // Specifies the model of exception handling - mode 'sc'
+            "/Fe:", // Renames the executable file
+            "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "${file}"
+        ],
       "stopAtEntry": false,
       "externalConsole": false,
       "cwd": "/workspaces/comp2012/pa3_skeleton",

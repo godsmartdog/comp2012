@@ -5,6 +5,7 @@
 
 template<typename T>
 BST<T>::BST(const BST& bst):root(nullptr){
+    if (bst.root!= nullptr)
         root=new BSTNode(*bst.root);
     }
 
@@ -17,7 +18,8 @@ template <typename T>
 void BST<T>::clear() {
     if (root != nullptr) {
         root->left.clear();  
-        root->right.clear();  
+        root->right.clear();
+         
         delete root;          
         root = nullptr;
     }

@@ -1,7 +1,7 @@
 #include "Flight.h"
 Flight::Flight(const string& num, const string& dept, const string& dest):flightNumber(num), departure(dept), destination(dest), tickets(new BST<Ticket>()){
    
-   cout<< toString()<<" has been created"<<endl;
+   cout<< toString()<<" has been created."<<endl;
 }
 
 bool Flight:: operator< (const KeyType& key) const{
@@ -12,17 +12,16 @@ bool Flight:: operator== (const KeyType& key) const{
 }
 
 
-Flight:: ~Flight(){
+Flight::~Flight() {
     if (tickets != nullptr) {
-        
+        // Delete all unsold tickets manually
         while (tickets->getSize() > 0) {
-            const BST<Ticket>*tmp = tickets->getKth(0);
-            if (tmp != nullptr) {
-                Ticket* ticket = tmp->getData();
+            const BST<Ticket>* node = tickets->getKth(0);
+            if (node != nullptr) {
+                Ticket* ticket = node->getData();
                 if (ticket != nullptr) {
                     tickets->remove(ticket);
                     delete ticket;
-                    delete tmp;
                 }
             }
         }

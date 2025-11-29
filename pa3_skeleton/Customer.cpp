@@ -15,20 +15,21 @@ Customer::Customer(const Customer& other) : name{other.name}, totalSpending{othe
   cout << "Copy customer data from " << name << "." << endl;
 }
 
-Customer:: ~Customer(){
+Customer::~Customer() {
     if (transactions != nullptr) {
-        
+        // Delete all transactions and their tickets manually
         while (transactions->getSize() > 0) {
-            const BST<Transaction>*tmp = transactions->getKth(0);
-            if (tmp != nullptr) {
-                Transaction* transaction = tmp->getData();
-                if (transaction != nullptr) {
-                    
-                    Ticket* ticket = transaction->getTicket();
-                    
+            const BST<Transaction>* node = transactions->getKth(0);
+            if (node != nullptr) {
+                Transaction* trans = node->getData();
+                if (trans != nullptr) {
+                    // Get the ticket before removing transaction
+                    Ticket* ticket = trans->getTicket();
+                    // Remove from BST
+                    transactions->remove(trans);
+                    // Delete the ticket and transaction
                     delete ticket;
-                    transactions->remove(transaction);
-                    delete transaction;
+                    delete trans;
                 }
             }
         }
@@ -37,26 +38,26 @@ Customer:: ~Customer(){
     }
 }
 
-
 void Member:: updateMembershipStatus(){
   int totalSpending = getTotalSpending();  
   
   if(totalSpending>MEMBER_REQUIREMENT[2]-1){
     memberStatus = static_cast<MembershipStatus>(3);
-    cout<< getName()<<" becomes "<< MEMBER_STATUS_LIST[3]<<" member !"<<endl;
+    cout<< getName()<<" becomes "<< MEMBER_STATUS_LIST[3]<<" member!"<<endl;
     return;
   }
   if(totalSpending>MEMBER_REQUIREMENT[1]-1){
     memberStatus = static_cast<MembershipStatus>(2);
-    cout<< getName()<<" becomes "<< MEMBER_STATUS_LIST[2]<<" member !"<<endl;
+    cout<< getName()<<" becomes "<< MEMBER_STATUS_LIST[2]<<" member!"<<endl;
     return;
   }
   if(totalSpending>MEMBER_REQUIREMENT[0]-1){
     memberStatus = static_cast<MembershipStatus>(1);
-    cout<< getName()<<" becomes "<< MEMBER_STATUS_LIST[1]<<" member !"<<endl;
+    cout<< getName()<<" becomes "<< MEMBER_STATUS_LIST[1]<<" member!"<<endl;
     return;
   }
   memberStatus = static_cast<MembershipStatus>(0);
+  cout<< getName()<<" becomes "<< MEMBER_STATUS_LIST[0]<<" member!"<<endl;
 }
 
 Member::Member(const string& name):Customer(name),memberStatus(static_cast<MembershipStatus>(0)){
